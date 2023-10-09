@@ -1,7 +1,7 @@
 library(ggplot2)
 library(reshape2)
 
-#the data have the Accessions names of protiens 
+#the data have the Accessions names of proteins 
 # 1 control cancer group 
 # 1 traetment group 
 data<-read.csv("gNSAF2.csv" )
@@ -26,7 +26,7 @@ data_transposed$group <- c("C","C","T","T","T","T","C","C")
 #Accessions names of protiens
 protiens <- colnames(data_transposed)
 
-# a simple example for the boxplot for one of the protiens 
+# a simple example for the boxplot for one of the proteins 
 ggplot(data_transposed, aes(x = group , y = data_transposed[,4] , fill=group )) +
   geom_boxplot() +
   labs(x = "groups",y="value")+
@@ -37,7 +37,7 @@ for (i in 1:5){
     plt<-ggplot(data_transposed, aes(x = group , y = data_transposed[,i] , fill=group )) +
     geom_boxplot() +
     labs(x = "groups",y="value")+
-    ggtitle(protiens[i])
+    ggtitle(proteins[i])
     print(plt)
 }
 ##########################################################
@@ -179,7 +179,7 @@ ggplot(data=ptable, aes(x=log2(FC), y=-log10(`p-adj`), col=diffexpressed)) +
 
 #######################################################################################
 
-######### heatmap for significant protiens per groups ####################
+######### heatmap for significant proteins per groups ####################
 
 significant_proteins <- ptable[ptable$`p-adj` < 0.05,]
 sig_data <- inner_join_df[inner_join_df$Accessions %in% significant_proteins$Accessions,]
@@ -207,7 +207,7 @@ res # the output is positive colleration
 
 ################### biological analysis #############################
 
-#for the protien that is the output from inner join
+#for the protein that is the output from inner join
 
 data2<-read.csv("gProfiler_hsapiens.csv",fileEncoding = "UTF-8" )
 #take significant from the data2 
